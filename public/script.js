@@ -1,4 +1,4 @@
-const socket = io();
+const socket = io("https://colormatch-collab.onrender.com");
 let gameId = null;
 let playerName = null;
 let isHost = false;
