@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Match Game</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="/socket.io/socket.io.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Forum&family=Mansalva&family=Mynerve&family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&family=Unkempt:wght@400;700&display=swap');
+    </style>
+</head>
+<body>
+  <button id="musicToggle" class="music-toggle">🎵</button>
+  <div class="container">
+    <h1 id="gameTitle" style="cursor: pointer;">Color Match Game</h1>
+    <!-- Welcome Screen -->
+    <div id="welcomeScreen" class="screen active">
+      <input type="text" id="playerName" placeholder="Enter your name" maxlength="20">
+      <button id="createGameBtn">Create Game</button>
+      <button id="joinGameBtn">Join Game</button>
+    </div>
+
+    <!-- Join Screen -->
+    <div id="joinScreen" class="screen">
+      <input type="text" id="joinGameId" placeholder="Enter Game ID" maxlength="6">
+      <button id="joinBtn">Join</button>
+      <button id="backBtn">Back</button>
+    </div>
+
+    <!-- Lobby Screen -->
+    <div id="lobbyScreen" class="screen">
+      <div class="game-id" id="displayGameId"></div>
+      <div class="round-info" id="lobbyRoundInfo" style="display:none;"></div>
+      <h2>Players:</h2>
+      <div class="players-list" id="playersList"></div>
+      <button id="startBtn" style="display:none">Start Round</button>
+      <div class="waiting" id="waitingMsg" style="display:none">Waiting for host to start...</div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="gameScreen" class="screen">
+      <div class="round-info" id="gameRoundInfo"></div>
+      <h2>Target Color:</h2>
+      <div class="color-display" id="targetColor"></div>
+      <h2>Your Match:</h2>
+      <div class="color-display" id="userColor"></div>
+      <div class="color-picker-container">
+        <div class="slider-group">
+          <label>Red: <span id="rValue">128</span></label>
+          <input type="range" id="rSlider" min="0" max="255" value="128">
+        </div>
+      </div>
+      <div class="color-picker-container">
+        <div class="slider-group">
+          <label>Green: <span id="gValue">128</span></label>
+          <input type="range" id="gSlider" min="0" max="255" value="128">
+        </div>
+      </div>
+      <div class="color-picker-container">
+        <div class="slider-group">
+          <label>Blue: <span id="bValue">128</span></label>
+          <input type="range" id="bSlider" min="0" max="255" value="128">
+        </div>
+      </div>
+      <button id="submitBtn">Submit Match</button>
+      <div class="waiting" id="submissionWait" style="display:none"></div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="resultsScreen" class="screen">
+      <div class="round-info" id="resultsRoundInfo"></div>
+      <h3>Round Results:</h3>
+      <div class="results" id="results"></div>
+      <h3>Leaderboard:</h3>
+      <div class="players-list" id="leaderboard"></div>
+      
+      <div class="game-complete" id="gameCompleteMsg" style="display:none">
+        🎉 Game Complete! 🎉
+      </div>
+      
+      <button id="nextRoundBtn" style="display:none">Next Round</button>
+      <button id="restartBtn" style="display:none">Restart Game</button>
+      <button id="exitBtn" style="display:none">Exit to Menu</button>
+      <div class="waiting" id="waitingNext" style="display:none">Waiting for host...</div>
+      <div class="waiting" id="waitingRestart" style="display:none">Waiting for host to restart...</div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
